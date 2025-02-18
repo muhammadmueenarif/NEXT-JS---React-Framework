@@ -52,3 +52,17 @@ on rerender the layout does not render, only the page components are update. Thi
 so it is first only the page updates, not the layout. Total layout is not updated. 
 
 Next.js routing is flexible  and powerful, allowing you to build a wide variety of route structures.
+
+
+Lec 3. Styling. 
+Using global styles, css modules, styled jsx, and integrate tailwind css. 
+global styles are applied using css file that is imported in app/layout.tsx.
+css modules allow to scope css to particular component preventing conflicts. 
+
+styled jsx is way to write scoped and component level styles in next js. add styles directly in the component 
+using the <style jsx> tag. 
+write 'use client' at the top of component that will render on client side. 
+
+tailwind css is utility first framework of css that can be easily integrated into next js project. 
+we already installed tailwind in project and we have tailwind.config.tsx file. we use tailwind base, component,
+and utilites in global file to use it. install tailwind css intellisense extension in vs code. 
