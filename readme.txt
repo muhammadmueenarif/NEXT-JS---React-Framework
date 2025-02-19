@@ -155,3 +155,112 @@ optimize images: Use next image for optimal automatic optimization.
 Lazy load components use dynamic imports and react suspense for code splitting.
 Cache strategies utilize get static props and get server side props for data fetching.
 
+
+Lec 5. Data Fetching. 
+Data fetching is very essential for building any dynamic web application. Without data fetching, you cannot 
+use any dynamic web application.
+various methods to fetch data in Next.js 14 and discuss when to fetch data on the server and when client.
+
+Should I fetch data on server or on the client?
+The decision of whether to fetch data on server or the client depends on the nature of your application's UI.
+It depends on the application's UI, nature of the application's UI, whether UI is engaging. Then we have to 
+use the client side or it is a static type of UI. Then we should use server side.
+
+
+Server side Fetching.
+Ideal for non real time data needs. Server side data fetching reduces the number of network requests and 
+client-server Waterfall, keeps sensitive information secure and improves performance by fetching data close 
+to the source. However, it causes the entire page to be rerendered on the server. It is not used for real time data 
+needs.
+
+What is client server Waterfall.
+If one action depends on the another action. If the next action depends on the previous action, then it is 
+called waterfall and requires and client server Waterfall. It does not needs any client server. The waterfall 
+keeps sensitive information secure. It cannot be loaded from the client. So you do not have to 
+provide the key security keys etc. passwords etc. so this sensitive information secure and improves 
+performance by fetching data close to the source. It means when it loads it already has the data from the database. 
+However, it causes the entire page to be rerendered on the server, however it. The server must rerender the 
+whole page. That is the problem.
+
+Client Side Data Fetching
+It is suitable for real time data updates. It is very frequently or when you need to revalidate specific UI 
+components without rerendering the entire page. This method is useful for dynamic updates such as live views.
+
+
+Data fetching methods in Next.js.
+Number one using fetch API.
+Number two using worms.(object relational mapping)
+Data fetching libraries.
+Route handlers.
+
+
+Next.js extends the native fetch API to support server side rendering SSR with caching and revalidation options.
+By default fetch request retrieve fresh data. this leads to dynamic rendering without caching. for cahe the 
+data use cache option. fetch(('api url'), {cache:'force-cache'})
+for partial rerendering wrap component with suspense to ensure only specific component is dynamically rendered.
+import {suspense} from 'react'
+export default function Navigation(){
+    return (
+        <>
+        <Suspense fallback={<LoadingIcon/>}>
+        <Cart/>
+        </Suspense>
+        </> )
+} 
+
+Using ORM object relational mapping or database clients
+you can use volumes or database clients within server components. This method allows caching requests using 
+React's cache API. 
+Import cache from react 
+export const getItem = cache(async(id:string)=> {
+    const item = await db.item.findUnique({id});
+    return item;
+}).
+
+using data fetching libraries
+client components in Next.js can utilize data fetching libraries like sWr(stale while revalidate) or react 
+query for real time updates and client side caching.
+Example
+use client;
+import useSWR from 'swr'
+import fetcher from '@/utils/fetcher'
+export default function POllingComponent (){
+    const {data} = useSWR ('/api/data', fetcher, {refreshInterval:2000});
+    return '...';
+}
+
+Route handlers
+Route handlers in Next.js are used to create API endpoints that execute on the server. Protecting sensitive 
+data like API credentials.
+Example
+export async function Get() {
+    const data = await fetch('api url').then(res) => res.json;
+    return Response.json({data});
+}
+
+Data Fetching
+Data fetching can be done either in parallel or sequential, either in parallel or at a time, or sequentially 
+one after another, depending on your needs.
+Three types of data fetching. sequential data fetching. parallel data fetching. preloading data.
+
+sequential data fetching
+This method is used when data dependencies exist between components.
+Parallel data fetching.
+Parallel fetching reduces load time By initial requests simultaneously. 
+Pre loading data. Pre loading can help prevent data fetching Waterfalls. waterfalls is when one task depends 
+on the previous task. For instance, you can initiate data fetching before it is actually needed in component. 
+Before that, when a page loads, it tries to get all the data fetching of the next page beforehand.
+export const preload = (id:string)=> {
+    void getItem(id);
+}
+export default async function Item ({id}:{id:string}) {
+    const result = await getItem(id);
+    return '...';
+}
+
+Next.js 14 provides flexible data fetching options, allowing developers to optimize performance, maintain 
+security, and optimize performance. It is fast, maintains security, and enhance the user experience.
+Suppose something is needed at the client side, then it is used in the client side and something loading
+times will be fast.
+Then it uses your server side by understanding when to use server side versus client side data fetching
+and applying the appropriate patterns, you can build highly efficient and dynamic applications.
