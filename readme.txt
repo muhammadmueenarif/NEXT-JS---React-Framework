@@ -264,3 +264,52 @@ Suppose something is needed at the client side, then it is used in the client si
 times will be fast.
 Then it uses your server side by understanding when to use server side versus client side data fetching
 and applying the appropriate patterns, you can build highly efficient and dynamic applications.
+
+
+Lec 6.API Routes.
+Routes in Next.js API routes provide an easy way to create a public API. API means application programming 
+interface directly with your application. These routes allow you to handle HTTP requests and responses on 
+their server side.  API routes provide an easy way to create public API. It is an easy way to 
+create public API directly within your application. This is how Next.js works. 
+Please remember that these routes allow you to handle HTTP requests and responses on the server side.
+
+Below is the step by step guide for understanding and using API routes in Next.js.
+Setting up API routes.
+API routes are created by placing files in the pages/API directory of your Next.js project. Each file in 
+this directory corresponds to an API endpoint.
+For example, if you create a file called hello.ts inside pages/API, it will be accessible at API/hello.
+
+You can handle different http methods e.g., get post put delete in your api route by checking req.method. 
+
+Request Helpers
+Next JS provides several built in helpers to easily access data from the request. It Provides several built 
+in helpers to easily access data from the request 
+Request.cookies is the object containing the cookies sent by the request. 
+req.query, request query an object containing the query parameters. It is also needed. 
+Req.body. An object containing the parsed body of the request. Please note that this is the parsed body of 
+request. Next.js provides built in helpers to easily access data from the request.
+
+Custom configuration
+Each API route can export a configuration object to customize its behavior.For example, you can set the body 
+parser size limit or disable it entirely.
+
+
+Response Helpers
+The response object includes helper methods similar to Express.js for sending responses like Express.js. It 
+can include a helper method to send responses. Res.status(code) sets the HTTP status code.
+Res.json(body) since JSON response.
+Res.send(body) sends http response with a string, object or buffer.
+res.redirect([status,] path): redirects the client to a specific path.
+That is first is optional. Status is optional.
+It means res revalidate url path revalidate page using getStaticProps.
+
+Dynamic API Routes
+API Routes can be dynamic, similar to Next.js pages. For example a file named [pid].ts will match requests
+to /api/post/1, /api/post/abc. etc.
+
+Catch All API Routes 
+Catch all routes match multiple segments and are defined with [...] in file name. 
+//pages/api/post/[...slug].tsx
+
+
+
