@@ -312,4 +312,104 @@ Catch all routes match multiple segments and are defined with [...] in file name
 //pages/api/post/[...slug].tsx
 
 
+Middlewares.
+Middleware in Next.js is a powerful feature that allows you to run code before a request is completed. It 
+can be used for tasks such as authentication, logging, and handling redirects. With Next.js 14, middleware 
+has become even more integrated into the development workflow, offering fine grained control over routing 
+and request handling. So middleware is a bunch of code which runs before a request is completed.
 
+Before learning middleware, we need to learn what is Edge runtime. 
+Edge Runtime in the context of Next.js refers to a lightweight, serverless environment designed to run JavaScript 
+code closer to the user Typically at datacenters on the edge of the network.
+This allows for faster response times and improved performance, especially for global users.
+
+Key characteristics of edge.
+
+Geographical distribution. The edge runtime operates on servers located closer to end users.
+This minimizes latency because the code is executed in data centers that are geographically nearer to
+the user's location. hence we get more efficient service.
+
+Serverless and event driven.
+The edge runtime is event driven and stateless, meaning it runs your code in response to specific events, 
+for example, like incoming HTTP request, without maintaining a persistent server
+state between requests.
+
+There is no server only, it is event driven for each event it will do something high performance.
+Since the Is runtime is optimized for performance, it can handle high traffic volumes with low latency,
+making it ideal for real time applications, personalization, and dynamic content generation.
+
+High performance.
+Since the edge runtime is optimized for performance, it is very lightweight. It can handle high network traffic 
+volumes. Lots of users tries to use that runtime with low latency.
+There is no waiting period, making it ideal for real time applications, personalization and dynamic
+content generation.
+
+limited execution time and resources.
+Is runtimes are designed to be fast and efficient, but come with certain limitations in terms of execution
+time, memory, and CPU resources.
+This is why it is important to keep your code lightweight when running on the edge.
+
+
+React runtime Common Use cases.
+
+Content personalization.
+Serving personalized content based on the user's location, device type, and preferences.
+device type which is the type of device, a desktop or a mobile or a tablet, etc. and preferences.
+
+Some users prefer this type of thing and another user prefer this type of thing. This is content 
+personalization.
+
+Same content will be personalized authentication, verifying authentication tokens or cookies before
+allowing access to certain parts of an application.
+
+You have to use verifying authentication tokens or cookies.
+After authentication, the user will get some token.
+Those are the access keys for certain parts of the application.
+
+Routing and redirection.
+Dynamically redirecting users based on their location, request headers or other criteria.
+
+
+Ab testing.
+Serving different versions of a page or feature to users to test performance or engagement.
+it has the different versions of the same software for a page or feature to users for test. It is very 
+flexible and lightweight.
+
+
+In Next.js, middleware functions run on edge runtime.
+When a request comes in, the middleware is executed at age at the age, potentially altering the requests
+or response before it reaches to your application or sent back to the client.
+
+
+What are the advantages of edge runtime?
+
+Reduce latency by executing code closer to the user.
+The response time is reduced, providing a faster and smoother user experience by executing the code closer 
+to the user. geographically closer to the user.
+The response time is reduced, providing faster and smoother, smoother user experience. Wait time is less.
+
+Scalability.
+Since its serverless edge runtime automatically scales to handle large amounts of traffic without needing
+to manage server infrastructure.
+Being serverless, it has some advantages.
+
+it can automatically scale to handle large amounts of traffic without needing to manage server infrastructure.
+
+Because it's serverless, you only pay for the resources you use often, making it more cost effective
+for many applications. 
+
+
+This topic is middleware.
+Middleware in Next.js runs on the edge runtime, allowing it to handle requests at the edge without
+relying on server side processing.
+Because edge runtime is event driven, it does not rely on the server side processing. It is executed before 
+the request is completed, making it ideal for ideal tasks.
+
+Ideal for tasks like authentication and authorization checks.
+After authentication, it will check authorization checks by using the key value or the token.
+
+Custom logging and analysis analytics.
+Modifying the response or request.
+Handling redirects and rewrites.
+
+To create a middleware, you need to add a middleware.js or ts file to root of project or any inside directory.
